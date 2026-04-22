@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RandomFood | Sorteio de Marmitas</title>
+  <meta name="description" content="Sorteie 3 pratos da semana de forma totalmente aleatória." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=20260420-4" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-1"></div>
+  <div class="bg-shape bg-shape-2"></div>
+
+  <main class="container">
+    <section class="hero card reveal">
+      <div class="hero-content">
+        <div>
+          <p class="tag">Planejamento semanal</p>
+          <h1>Random Food</h1>
+          <p class="subtitle">
+            Cadastre sabores e sorteie sempre 3 pratos da semana de forma aleatória.
+          </p>
+        </div>
+        <img class="hero-logo" src="img/Logo.png" alt="Logo Random Food" />
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card reveal delay-1">
+        <h2>Adicionar nova marmita</h2>
+        <form id="addDishForm" class="form">
+          <label>
+            Nome do sabor
+            <input id="dishName" type="text" maxlength="60" placeholder="" required />
+          </label>
+
+          <button type="submit" class="btn btn-primary">Adicionar sabor</button>
+        </form>
+      </article>
+
+      <article class="card reveal delay-2">
+        <h2>Sorteio da próxima semana</h2>
+        <div class="draw-controls">
+          <button id="drawButton" class="btn btn-accent" type="button">Sortear 3 sabores</button>
+        </div>
+        <p class="hint"></p>
+
+        <div id="drawResult" class="result" aria-live="polite">
+          <p>Nenhum sorteio realizado ainda.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="card reveal delay-3">
+      <div class="list-header">
+        <h2>Sabores cadastrados</h2>
+        <button id="resetData" class="btn btn-ghost" type="button">Limpar tudo</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Sabor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="dishTableBody"></tbody>
+        </table>
+      </div>
+      <p id="emptyState" class="empty">Cadastre sua primeira marmita para começar.</p>
+    </section>
+  </main>
+
+  <template id="dishRowTemplate">
+    <tr>
+      <td>
+        <input class="dish-name-input" type="text" maxlength="60" />
+      </td>
+      <td>
+        <button class="btn btn-danger remove-btn" type="button">Excluir</button>
+      </td>
+    </tr>
+  </template>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
